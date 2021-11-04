@@ -1,19 +1,39 @@
-<h1>新規投稿</h1>
-
+<div class="alart">
 <% if @list.errors.any? %>
   <%= @list.errors.count %>件のエラーが発生しました
   <% @list.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
 <% end%>
+</div>
 
-<%= form_with model: @list, url:'/todolists', local:true do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>本文</h4>
-  <%= f.text_field :body %>
-  <h4>画像</h4>
-  <%= f.attachment_field :image %>
+
+<div class="title">
+  <h1>新規投稿</h1>
+</div>
+
+<section class="section">
   
-  <%= f.submit '投稿' %>
-<% end %>
+  <%= form_with model: @list, url:'/todolists', local:true do |f| %>
+  <div class="field">
+    <h2>タイトル</h2>
+    <%= f.text_field :title, placeholder: "タイトル" %>
+  </div>
+  <div class="field">
+    <h2>本文</h2>
+    <%= f.text_area :body, placeholder: "詳細" %>
+  </div>
+  <div class="field">
+    <h2>画像</h2>
+    <%= f.attachment_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.submit '投稿', class: "button" %>
+  </div>
+
+  <% end %>
+</section>
+
+</div>
+

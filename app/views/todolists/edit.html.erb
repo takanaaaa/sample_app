@@ -1,9 +1,33 @@
-<h1>編集画面</h1>
+<div class="alart">
+<% if @list.errors.any? %>
+  <%= @list.errors.count %>件のエラーが発生しました
+  <% @list.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end%>
+</div>
 
-<%= form_with model:@list, url:"/todolists/#{@list.id}", local:true do |f| %>
-  <h2>タイトル</h2>
-  <%= f.text_field :title%>
-  <h2>本文</h2>
-  <%= f.text_area :body%>
-  <%= f.submit '保存' %>
-<% end %>
+<div class="title">
+  <h1>編集画面</h1>
+</div>
+
+<section class="section">
+  <%= form_with model:@list, url:"/todolists/#{@list.id}", local:true do |f| %>
+  <div class="field">
+    <h2>タイトル</h2>
+    <%= f.text_field :title, placeholder: "タイトル" %>
+  </div>
+  <div class="field">
+    <h2>本文</h2>
+    <%= f.text_area :body, placeholder: "詳細"%>
+  </div>
+  <div class="field">
+    <h2>画像</h2>
+    <%= f.attachment_field :image %>
+  </div>
+  <div class="field">
+    <%= f.submit '保存', class: "button" %>
+  </div>
+  <% end %>
+
+</section>
